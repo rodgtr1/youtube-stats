@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - 16
+
+  services:
+    - docker
+
+  before_install: #predeployment / staging
+    - docker build -t hyiik09/practical10 -f Dockerfile.dev .
+
+script: # deployment / staging
+  - docker run hyiik09/practical10 npm run -test -- -- coverage
